@@ -1,0 +1,74 @@
+mcq-assessment-system/
+├── backend/
+│   ├── server.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── teacher.js
+│   │   ├── student.js
+│   │   └── quiz.js
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── utils/
+│   │   └── pdfParser.js
+│   └── data/
+│       ├── users.json
+│       ├── quizzes.json
+│       └── attempts.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Login.jsx
+│   │   │   ├── TeacherDashboard.jsx
+│   │   │   ├── StudentDashboard.jsx
+│   │   │   ├── CreateQuiz.jsx
+│   │   │   ├── TakeQuiz.jsx
+│   │   │   └── Results.jsx
+│   │   ├── contexts/
+│   │   │   └── AuthContext.jsx
+│   │   └── App.jsx
+│   └── package.json
+└── package.json
+
+
+
+┌────────────────────────────────────────────────────────────────────┐
+│                          SETUP PHASE                                │
+│  Teacher creates account → Logs in as Teacher                      │
+└────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────────┐
+│                    TEACHER: CREATE QUIZ                             │
+│  1. Upload Questions PDF → System extracts text                    │
+│  2. Review/Edit questions in UI                                    │
+│  3. Upload Answer Key PDF → System extracts answers                │
+│  4. Set passing score, time limit, point values                    │
+│  5. Save quiz → Students can now access it                         │
+└────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────────┐
+│                    STUDENT: TAKE QUIZ                               │
+│  1. Student logs in → Sees available quizzes                       │
+│  2. Selects quiz → Answers questions                               │
+│  3. Submits for grading                                            │
+└────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────────┐
+│                    AUTOMATIC GRADING                                │
+│  1. System compares answers to teacher's answer key                │
+│  2. Calculates score (points per question)                         │
+│  3. Generates feedback with corrections                            │
+│  4. Saves attempt to JSON storage                                  │
+└────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────────┐
+│                    RESULTS & FEEDBACK                               │
+│  Student views:                                                    │
+│  • Score and percentage                                            │
+│  • Which answers were wrong                                        │
+│  • Correct answers with explanations                               │
+│  • Option to review or retake                                      │
+└────────────────────────────────────────────────────────────────────┘
